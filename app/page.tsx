@@ -61,6 +61,7 @@ export default function Home() {
 								<div key={key}>
 									<p>{key}</p>
 									<Image
+										unoptimized
 										className='h-auto w-auto'
 										src={url}
 										width={300}
