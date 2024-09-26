@@ -3,7 +3,7 @@ import { imgs } from './imgs'
 
 export default function Home() {
 	return (
-		<div className='flex flex-col min-h-screen p-8 pb-20 gap-16 sm:p-10 font-[family-name:var(--font-geist-sans)]'>
+		<div className='flex w-screen overflow-x-hidden flex-col min-h-screen p-8 pb-20 gap-16 sm:p-10 font-[family-name:var(--font-geist-sans)]'>
 			<div
 				data-w-id='d590085d-0897-06e6-1778-ccc9c1bbcf4c'
 				className='animate-translateHero z-[-1] filter blur-[500px] bg-transparent flex flex-row w-[30%] h-[75%] absolute inset-[20rem_0_0_auto] '
