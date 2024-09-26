@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { imgs } from './imgs'
+import Link from 'next/link'
 
 export default function Home() {
 	return (
@@ -51,14 +52,15 @@ export default function Home() {
 					Download the App
 				</button>
 				<p className='text-lg'>
-					No need to download the app and pay $20+, just save them here.
+					Don&apos;t waste your time downloading the app and paying $11.99+.
+					Just click and save here.
 				</p>
 				{Object.entries(imgs).map(([id, collection]) => (
-					<div key={id} className=''>
+					<div key={id}>
 						<h2 className='text-2xl font-bold'>{id}</h2>
 						<div className='flex gap-4 max-w-3xl overflow-scroll'>
 							{Object.entries(collection).map(([key, url]) => (
-								<div key={key}>
+								<Link href={url} target='_blank' key={key}>
 									<p>{key}</p>
 									<Image
 										unoptimized
@@ -68,7 +70,7 @@ export default function Home() {
 										height={1000}
 										alt='wallpaper'
 									/>
-								</div>
+								</Link>
 							))}
 						</div>
 					</div>
