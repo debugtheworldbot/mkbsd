@@ -3,6 +3,23 @@ import { imgs } from './imgs'
 import Link from 'next/link'
 
 export default function Home() {
+	const displayImg = Object.entries(imgs)
+		.flatMap(([, collection]) =>
+			Object.entries(collection).filter(([key]) => key === 'dhd' || key === 's')
+		)
+		.map(([, url]) => url)
+	const displayImgChunks = [
+		displayImg.slice(0, Math.ceil(displayImg.length / 4)),
+		displayImg.slice(
+			Math.ceil(displayImg.length / 4),
+			Math.ceil(displayImg.length / 2)
+		),
+		displayImg.slice(
+			Math.ceil(displayImg.length / 2),
+			Math.ceil((3 * displayImg.length) / 4)
+		),
+		displayImg.slice(Math.ceil((3 * displayImg.length) / 4)),
+	]
 	return (
 		<div className='flex w-screen overflow-x-hidden flex-col min-h-screen p-8 pb-20 gap-16 sm:p-10 font-[family-name:var(--font-geist-sans)]'>
 			<div
@@ -55,26 +72,25 @@ export default function Home() {
 					Don&apos;t waste your time downloading the app and paying $11.99+.
 					Just click and save here.
 				</p>
-				{Object.entries(imgs).map(([id, collection]) => (
-					<div key={id}>
-						<h2 className='text-2xl font-bold'>{id}</h2>
-						<div className='flex gap-4 max-w-3xl overflow-scroll'>
-							{Object.entries(collection).map(([key, url]) => (
-								<Link href={url} target='_blank' key={key}>
-									<p>{key}</p>
+
+				<div className='grid grid-cols-2 md:grid-cols-4 gap-4 w-full'>
+					{displayImgChunks.map((chunk, index) => (
+						<div className='flex flex-col gap-4' key={index}>
+							{chunk.map((url) => (
+								<Link href={url} target='_blank' key={url}>
 									<Image
 										unoptimized
-										className='h-auto w-auto'
+										className='w-full h-auto object-cover rounded'
 										src={url}
 										width={300}
-										height={1000}
+										height={300}
 										alt='wallpaper'
 									/>
 								</Link>
 							))}
 						</div>
-					</div>
-				))}
+					))}
+				</div>
 			</main>
 		</div>
 	)
